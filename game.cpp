@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <conio.h>
-#include <time.h>
 
 #define WIDTH 22
 #define HEIGHT 12
@@ -129,11 +129,11 @@ void displayGrid() {
     system("cls");  // Clear the console (Windows-specific, use "clear" for Unix-based systems)
     for (int y = 0; y < HEIGHT; y++) {
         for (int x = 0; x < WIDTH; x++) {
-            printf("%c", grid[y][x]);
+            std::cout << grid[y][x];
         }
-        printf("\n");
+        std::cout << "\n";
     }
-    printf("Score: %d\n", score);
+    std::cout << "Score: " << score << "\n";
 }
 
 void movePlayer(char direction) {
@@ -169,14 +169,14 @@ void movePlayer(char direction) {
 }
 
 int main() {
-    srand(time(NULL));
+    srand(static_cast<unsigned>(time(0)));
     char input;
     initializeGrid(0); // Initial grid setup
 
-    while (1) {
+    while (true) {
         displayGrid();
-        printf("Move (WASD) or Q to quit: ");
-        input = getch();  // Get a single character input without pressing Enter
+        std::cout << "Move (WASD) or Q to quit: ";
+        input = _getch();  // Get a single character input without pressing Enter
         if (input == 'q' || input == 'Q') break;
         movePlayer(input);
     }
